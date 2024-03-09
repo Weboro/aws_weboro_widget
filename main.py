@@ -1,24 +1,40 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+from dotenv import load_dotenv
+import os
+import json
+import requests
 
-chrome_options = Options()
-chrome_options.add_argument('--headless')  # Enable headless mode
-chrome_options.add_argument('--no-sandbox')  # Disable sandbox mode (not recommended for security reasons)
-chrome_options.add_argument('--disable-dev-shm-usage')
+from getGoogleUsers import fetch_data_from_api
+from google_widget import GoogleWidget
 
-from time import sleep
+# load the .env file
+load_dotenv() 
 
-driver = webdriver.Chrome(options=chrome_options)
-driver.get("https://clickconsultingnepal.com/scrape/googlescraper?place_id=ChIJUW-zCOkZ6zkRnadg7FRw22s")
 
-# divs = driver.find_elements_by_tag_name('div')
+# print(api_key)  ===> ok
 
-# Print the text content of each div
+api_key = os.environ.get('Key')
+domain = os.environ.get('Domain')
+headers = {'Content-Type': 'application/json'}
 
-sleep(2)
 
-print(driver.find_element(By.XPATH, "/html/body").text)
+googlewidget = GoogleWidget(domain)
 
-# Close the browser
-driver.quit()
+for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
+    user_api_key = user['api_token']
+    data = json.loads(user['service_kvpairs'])
+    places_id = data['google reviews api']['places_id']
+    
+    data = googlewidget.get_data(api_key,user_api_key,places_id)
+
+
+    fulldata = {
+        'user_key': user_api_key,
+        'aws_key':api_key,
+        'api_data': data
+    }
+
+    response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
+
+    print(response)
+
+googlewidget.close()
