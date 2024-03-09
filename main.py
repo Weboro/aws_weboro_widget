@@ -19,13 +19,14 @@ headers = {'Content-Type': 'application/json'}
 
 googlewidget = GoogleWidget(domain)
 
-for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
+for user in fetch_data_from_api(f"{domain}/userswith/google_reviews_api",api_key=api_key):
     user_api_key = user['api_token']
     data = json.loads(user['service_kvpairs'])
     places_id = data['google reviews api']['places_id']
     
     data = googlewidget.get_data(api_key,user_api_key,places_id)
-    print(data)
+
+    # print(data)
 
     fulldata = {
         'user_key': user_api_key,
@@ -33,8 +34,11 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
         'api_data': data
     }
 
-    # response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
+    # print(f"{domain}/api/store/google_reviews_api/")
 
-    # print(response)
+    response =  requests.post(f"{domain}/store/google_reviews_api/",json=fulldata,headers=headers)
+
+
+    print(response)
 
 googlewidget.close()
