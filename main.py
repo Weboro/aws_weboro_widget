@@ -25,7 +25,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
     places_id = data['google reviews api']['places_id']
     
     data = googlewidget.get_data(api_key,user_api_key,places_id)
-
+    print(data)
 
     fulldata = {
         'user_key': user_api_key,
@@ -33,8 +33,8 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
         'api_data': data
     }
 
-    response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
+    # response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
 
-    print(response)
+    # print(response)
 
 googlewidget.close()
