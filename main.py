@@ -1,6 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-
+from selenium.webdriver.common.by import By
 
 chrome_options = Options()
 chrome_options.add_argument('--headless')  # Enable headless mode
@@ -17,6 +17,8 @@ driver.get("https://clickconsultingnepal.com/scrape/googlescraper?place_id=ChIJU
 # Print the text content of each div
 
 sleep(2)
+
+print(driver.find_element(By.XPATH, "/html/body").text)
 
 # Close the browser
 driver.quit()
