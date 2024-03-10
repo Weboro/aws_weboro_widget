@@ -14,12 +14,11 @@ load_dotenv()
 
 api_key = os.environ.get('Key')
 domain = os.environ.get('Domain')
-headers = {'Content-Type': 'application/json'}
 
 
 googlewidget = GoogleWidget(domain)
 
-for user in fetch_data_from_api(f"{domain}/userswith/google_reviews_api",api_key=api_key):
+for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
     user_api_key = user['api_token']
     data = json.loads(user['service_kvpairs'])
     places_id = data['google reviews api']['places_id']
@@ -34,11 +33,12 @@ for user in fetch_data_from_api(f"{domain}/userswith/google_reviews_api",api_key
         'api_data': data
     }
 
-    # print(f"{domain}/api/store/google_reviews_api/")
+    print(f"{domain}/api/store/google_reviews_api/")
 
-    response =  requests.post(f"{domain}/store/google_reviews_api/",json=fulldata,headers=headers)
+    headers = {'Content-Type': 'application/json'}
 
+    response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
 
-    print(response)
+    print(response.text)
 
 googlewidget.close()
