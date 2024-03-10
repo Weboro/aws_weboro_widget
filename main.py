@@ -19,8 +19,8 @@ domain = os.environ.get('Domain')
 googlewidget = GoogleWidget(domain)
 
 headers = {
-    'Referer': '{domain}',
-    'origin': '{domain}',
+    # 'Referer': '{domain}',
+    # 'origin': '{domain}',
     # 'host':'{domain}',
     'Content-Type': 'application/json',
 }
@@ -32,7 +32,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
     
     data = googlewidget.get_data(api_key,user_api_key,places_id)
 
-    # print(data)
+    # print(data)q
 
     fulldata = {
         'user_key': user_api_key,
@@ -46,6 +46,6 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     response =  requests.post(f"{domain}/api/ssstore/google_reviews_api/",json=fulldata,headers=headers)
 
-    print(response.status_code)
+    print(response.json())
 
 googlewidget.close()
