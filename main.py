@@ -44,7 +44,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     
 
-    response =  requests.post(f"{domain}/api/store/google_reviews_api/",json=fulldata,headers=headers)
+    response =  requests.post(f"{domain}/api/ssstore/google_reviews_api/",json=fulldata,headers=headers)
 
     print(response.status_code)
 
