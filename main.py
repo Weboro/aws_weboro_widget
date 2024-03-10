@@ -23,7 +23,6 @@ headers = {
     'origin': '{domain}',
     'host':'{domain}',
     'Content-Type': 'application/json',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
 }
 
 for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
