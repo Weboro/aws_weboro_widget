@@ -21,7 +21,7 @@ googlewidget = GoogleWidget(domain)
 headers = {
     'Referer': '{domain}',
     'origin': '{domain}',
-    'host':'{domain}',
+    # 'host':'{domain}',
     'Content-Type': 'application/json',
 }
 
