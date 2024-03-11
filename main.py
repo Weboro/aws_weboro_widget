@@ -29,8 +29,8 @@ log = ""
 for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
     count += 1
     
-    print(f"For :{count}")
-    log += f"For :{count}\n"
+    print(f"For :{count}. {user['name']}")
+    log += f"For :{count}. {user['name']}\n"
 
     user_api_key = user['api_token']
     data = json.loads(user['service_kvpairs'])
@@ -40,24 +40,23 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     if data == []:
         print("Error: check for : Invalid placeid")
-        log += f"Error: check for : Invalid placeid\n"
+        log += f"Error: check for - Invalid placeid\n"
+    else:
 
-        data = ["Error:No or invalid place Id"]
+        fulldata = {
+            'user_key': user_api_key,
+            'aws_key':api_key,
+            'api_data': data
+        }
 
-    fulldata = {
-        'user_key': user_api_key,
-        'aws_key':api_key,
-        'api_data': data
-    }
+        # print(f"{domain}/api/store/google_reviews_api/")
 
-    # print(f"{domain}/api/store/google_reviews_api/")
+        
 
-    
+        response =  requests.post(f"{domain}/api/ssstore/google_reviews_api/",json=fulldata,headers=headers)
 
-    response =  requests.post(f"{domain}/api/ssstore/google_reviews_api/",json=fulldata,headers=headers)
-
-    res = response.json()
-    print(res)
+        res = response.json()
+        print(res)
     log += str(res) + "\n\n"
 
     print("\n")
