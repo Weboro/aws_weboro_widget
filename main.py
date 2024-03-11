@@ -19,9 +19,6 @@ domain = os.environ.get('Domain')
 googlewidget = GoogleWidget(domain)
 
 headers = {
-    # 'Referer': '{domain}',
-    # 'origin': '{domain}',
-    # 'host':'{domain}',
     'Content-Type': 'application/json',
 }
 
@@ -32,7 +29,8 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
     
     data = googlewidget.get_data(api_key,user_api_key,places_id)
 
-    # print(data)q
+    if data == []:
+        data = ["Error:No or invalid place Id"]
 
     fulldata = {
         'user_key': user_api_key,
