@@ -30,6 +30,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
     data = googlewidget.get_data(api_key,user_api_key,places_id)
 
     if data == []:
+        print("Error: check for : Invalid placeid")
         data = ["Error:No or invalid place Id"]
 
     fulldata = {
