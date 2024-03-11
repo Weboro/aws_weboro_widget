@@ -23,9 +23,13 @@ headers = {
 }
 
 count = 0
+log = ""
 for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
     count += 1
+    
     print(f"For :{count}")
+    log += f"For :{count}\n"
+
     user_api_key = user['api_token']
     data = json.loads(user['service_kvpairs'])
     places_id = data['google reviews api']['places_id']
@@ -34,6 +38,8 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     if data == []:
         print("Error: check for : Invalid placeid")
+        log += f"Error: check for : Invalid placeid\n"
+
         data = ["Error:No or invalid place Id"]
 
     fulldata = {
@@ -48,7 +54,14 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     response =  requests.post(f"{domain}/api/ssstore/google_reviews_api/",json=fulldata,headers=headers)
 
-    print(response.json())
+    res = response.json()
+    print(res)
+    log += str(res) + "\n\n"
+
     print("\n")
 
+
 googlewidget.close()
+
+with open('log','w') as file:
+    file.write(log)
