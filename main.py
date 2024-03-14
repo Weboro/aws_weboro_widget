@@ -40,7 +40,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
     if data == []:
         print("Error: check for : Invalid placeid")
-        log += f"Error: check for - Invalid placeid\n"
+        log += f"Error: check for - Invalid placeid\n\n"
     else:
 
         fulldata = {
