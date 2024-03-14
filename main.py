@@ -57,7 +57,8 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 
         res = response.json()
         print(res)
-    log += str(res) + "\n\n"
+
+        log += str(res) + "\n\n"
 
     print("\n")
 
