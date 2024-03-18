@@ -64,7 +64,6 @@ class GoogleWidget:
         nested_array.append(reviews_container)
         
 
-        # Print the nested array
         return nested_array
 
 
