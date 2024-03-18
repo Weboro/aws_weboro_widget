@@ -68,7 +68,7 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
 googlewidget.close()
 
 
-log = "________________________________For Tiktok_____________________________"
+log += "________________________________For Tiktok_____________________________\n"
 print("--------------------------------For Tiktok________________________")
 count = 0
 for user in fetch_data_from_api(f'{domain}/api/userswith/tiktok_api',api_key=api_key):
