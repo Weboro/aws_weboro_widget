@@ -34,6 +34,15 @@ class GoogleWidget:
         # Create a nested array to store the results
         nested_array = []
 
+        # reviews dict and list
+        reviews_container = {}
+        reviews = []
+
+        # total no of reviews
+        total_no_reviews = {}
+
+        total_no_reviews['RatingCount'] = self.driver.find_elements(By.CLASS_NAME, 'totalRating')[0].text
+
         # Iterate over each div element
         for div in divs:
             # Find all the p elements inside the div
@@ -47,7 +56,13 @@ class GoogleWidget:
                 p_dict[class_name] = text_content
             
             # Append the dictionary to the nested array
-            nested_array.append(p_dict)
+            reviews.append(p_dict)
+
+        reviews_container['reviews'] = reviews
+
+        nested_array.append(total_no_reviews)
+        nested_array.append(reviews_container)
+        
 
         # Print the nested array
         return nested_array
