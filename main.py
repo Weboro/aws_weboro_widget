@@ -25,7 +25,7 @@ headers = {
 }
 
 count = 0
-log = "________________________________For Google_____________________________"
+log = "________________________________For Google_____________________________\n"
 print("--------------------------------For Google________________________")
 
 for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api_key=api_key):
@@ -88,7 +88,7 @@ for user in fetch_data_from_api(f'{domain}/api/userswith/tiktok_api',api_key=api
     response =  requests.post(f"{domain}/api/ssstore/tiktok_api/",json=data,headers=headers)
     
     if response.status_code != 200:
-        log += f"Something went wrong"
+        log += f"Something went wrong\n\n"
         print("Something went wrong")
     else:
         res = response.json()
