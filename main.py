@@ -88,8 +88,9 @@ for user in fetch_data_from_api(f'{domain}/api/userswith/tiktok_api',api_key=api
     response =  requests.post(f"{domain}/api/ssstore/tiktok_api/",json=data,headers=headers)
     
     if response.status_code != 200:
-        log += f"Something went wrong\n\n"
-        print("Something went wrong")
+        log += f"{response.status_code}: {response.json()}\n\n"
+        print(f"{response.status_code}: {response.json()}")
+
     else:
         res = response.json()
         print(response.json())
