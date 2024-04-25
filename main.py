@@ -38,7 +38,10 @@ for user in fetch_data_from_api(f"{domain}/api/userswith/google_reviews_api",api
     data = json.loads(user['service_kvpairs'])
     places_id = data['google reviews api']['places_id']
     
-    data = googlewidget.get_data(api_key,user_api_key,places_id)
+    try:
+        data = googlewidget.get_data(api_key,user_api_key,places_id)
+    except IndexError:
+        data = []
 
     if data == []:
         print("Error: check for : Invalid placeid")
