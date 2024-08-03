@@ -4,7 +4,7 @@
 # weboro_widget
 weboro widget that acts as middleware between Application Api layer and Weboro admin site.
 
-# How to run on docker Docker 
+# How to run on Docker 
 - Step 1: docker build -t selenium-cron-image .
 
 - Step 2: docker run -d --name selenium-cron selenium-cron-image
