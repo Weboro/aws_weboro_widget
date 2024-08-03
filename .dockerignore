@@ -1,0 +1,3 @@
+# Exclude Dockerfile and other build-related files
+Dockerfile
+.dockerignore

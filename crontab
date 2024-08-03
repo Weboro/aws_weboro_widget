@@ -1,0 +1,2 @@
+# Run the script every day at midnight
+0 0 * * * python /app/main.py >> /var/log/cron/cron.log 2>&1
