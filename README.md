@@ -15,3 +15,6 @@ This application runs once everyday at midnight so any change you make will take
 ## If you immediatly want to reflect the changes and update you can use this command line 
 - docker exec selenium-cron sh -c "python /app/main.py > /app/realtime_run.log"
 
+
+## To see the logs:
+- docker exec selenium-cron cat /app/realtime_run.log
