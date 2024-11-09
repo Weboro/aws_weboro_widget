@@ -13,4 +13,4 @@ weboro widget that acts as middleware between Application's Api layer and Weboro
 This application runs once everyday at midnight so any change you make will take place after midnight. 
 
 ## If you immediatly want to reflect the changes and update you can use this command line 
-- docker exec selenium-cron python /app/main.py > realtime_run.log
+- docker exec selenium-cron python /app/main.py > /app/realtime_run.log
